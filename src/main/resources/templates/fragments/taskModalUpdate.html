@@ -1,0 +1,43 @@
+<!-- fragments/taskModalUpdate.html -->
+<div th:fragment="taskModalUpdate">
+    <div id="taskModalUpdate" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Tarea</h2>
+            <form th:action="@{/board/tasks/update}" method="post">
+                <!-- ID oculto -->
+                <input type="hidden" id="updateId" name="id">
+
+                <!-- Título -->
+                <label for="updateTitle">Título:</label><br>
+                <input type="text" id="updateTitle" name="title" required>
+
+                <!-- Descripción -->
+                <label for="updateDescription">Descripción:</label><br>
+                <textarea id="updateDescription" name="description" rows="4" required></textarea>
+
+                <!-- Estado -->
+                <label for="updateStatus">Estado:</label><br>
+                <select id="updateStatus" name="status" required>
+                    <option th:value="PENDIENTE">Pendiente</option>
+                    <option th:value="EN_PROCESO">En Proceso</option>
+                    <option th:value="COMPLETADA">Completada</option>
+                </select>
+
+                <!-- Prioridad -->
+                <label for="updatePriority">Prioridad:</label>
+                <select id="updatePriority" name="priority" required>
+                    <option th:value="BAJA">Baja</option>
+                    <option th:value="MEDIA">Media</option>
+                    <option th:value="ALTA">Alta</option>
+                </select>
+
+                <!-- Fecha límite -->
+                <label for="updateDueDate">Fecha límite:</label>
+                <input type="date" id="updateDueDate" name="dueDate">
+
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+</div>

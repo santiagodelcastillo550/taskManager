@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Tareas</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    
+    <!-- FullCalendar CSS (para cuando lo integremos) -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+    
+</head>
+<body class="board-body">
+
+    <!-- Navbar calendar.html -->
+	<div class="navbar">
+	    <!-- Izquierda: título + botón Tareas -->
+	    <div class="navbar-left" style="display: flex; align-items: center; gap: 10px;">
+	        <h1>TASK MANAGER</h1>
+	        <form th:action="@{/board}" method="get">
+	            <button type="submit" class="navbar-button">📋 Tareas</button>
+	        </form>
+	    </div>
+	
+	    <!-- Centro: vacío -->
+	
+	    <!-- Derecha: cerrar sesión -->
+	    <div class="navbar-right">
+	        <form th:action="@{/logout}" method="post" class="navbar-form">
+	            <button type="submit" class="navbar-button">Cerrar sesión</button>
+	        </form>
+	    </div>
+	</div>
+
+    <!-- Contenido principal -->
+    <div class="calendar-container">
+        <div id="calendar"></div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
+	
+	<!-- JS del calendario inline -->
+    <script>
+	    document.addEventListener('DOMContentLoaded', function() {
+	        var calendarEl = document.getElementById('calendar');
+	
+	        var calendar = new FullCalendar.Calendar(calendarEl, {
+	            initialView: 'dayGridMonth',
+	            locale: 'es',
+	            headerToolbar: {
+	                left: 'prev,next today',
+	                center: 'title',
+	                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+	            },
+	            eventColor: '#ff9f89',
+	
+	            // Cargar eventos desde el endpoint
+	            events: function(fetchInfo, successCallback, failureCallback) {
+	                fetch('/api/tasks')
+	                    .then(response => response.json())
+	                    .then(data => {
+	                        const events = data.map(task => ({
+	                            title: task.title,
+	                            start: task.start,
+	                            id: task.id
+	                        }));
+	                        successCallback(events);
+	                    })
+	                    .catch(error => {
+	                        console.error('Error al cargar tareas:', error);
+	                        failureCallback(error);
+	                    });
+	            }
+	        });
+	
+	        calendar.render();
+	    });
+    </script>
+
+</body>
+</html>
