@@ -9,34 +9,34 @@
                 <input type="hidden" id="updateId" name="id">
 
                 <!-- Título -->
-                <label for="updateTitle">Título:</label><br>
+                <label for="updateTitle" th:text="#{modal.title}"></label><br>
                 <input type="text" id="updateTitle" name="title" required>
 
                 <!-- Descripción -->
-                <label for="updateDescription">Descripción:</label><br>
+                <label for="updateDescription" th:text="#{modal.description}"></label><br>
                 <textarea id="updateDescription" name="description" rows="4" required></textarea>
 
                 <!-- Estado -->
-                <label for="updateStatus">Estado:</label><br>
+                <label for="updateStatus" th:text="#{modal.status}"></label><br>
                 <select id="updateStatus" name="status" required>
-                    <option th:value="PENDIENTE">Pendiente</option>
-                    <option th:value="EN_PROCESO">En Proceso</option>
-                    <option th:value="COMPLETADA">Completada</option>
+                    <option th:value="PENDIENTE" th:text="#{modal.status.pendiente}"></option>
+                    <option th:value="EN_PROCESO" th:text="#{modal.status.enProceso}"></option>
+                    <option th:value="COMPLETADA" th:text="#{modal.status.completada}"></option>
                 </select>
 
                 <!-- Prioridad -->
-                <label for="updatePriority">Prioridad:</label>
+                <label for="updatePriority" th:text="#{modal.priority}"></label>
                 <select id="updatePriority" name="priority" required>
-                    <option th:value="BAJA">Baja</option>
-                    <option th:value="MEDIA">Media</option>
-                    <option th:value="ALTA">Alta</option>
+                    <option th:value="BAJA" th:text="#{modal.priority.baja}"></option>
+                    <option th:value="MEDIA" th:text="#{modal.priority.media}"></option>
+                    <option th:value="ALTA" th:text="#{modal.priority.alta}"></option>
                 </select>
 
                 <!-- Fecha límite -->
-                <label for="updateDueDate">Fecha límite:</label>
+                <label for="updateDueDate" th:text="#{modal.dueDate}"></label>
                 <input type="date" id="updateDueDate" name="dueDate">
 
-                <button type="submit">Guardar Cambios</button>
+                <button type="submit" th:text="#{modal.button.save}"></button>
             </form>
         </div>
     </div>

@@ -3,37 +3,37 @@
     <div id="taskModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Crear Nueva Tarea</h2>
+            <h2 th:text="#{modal.title.create}"></h2>
             <form th:action="@{/board/tasks/create}" method="post">
                 <!-- Título -->
-                <label for="title">Título:</label><br>
+                <label for="title" th:text="#{modal.title}"></label><br>
                 <input type="text" id="title" name="title" required>
 
                 <!-- Descripción -->
-                <label for="description">Descripción:</label><br>
+                <label for="description" th:text="#{modal.description}"></label><br>
                 <textarea id="description" name="description" rows="4" required></textarea>
 
                 <!-- Estado -->
-                <label for="status">Estado:</label><br>
+                <label for="status" th:text="#{modal.status}"></label><br>
                 <select id="status" name="status" required>
-                    <option th:value="PENDIENTE">Pendiente</option>
-                    <option th:value="EN_PROCESO">En Proceso</option>
-                    <option th:value="COMPLETADA">Completada</option>
+                    <option th:value="PENDIENTE" th:text="#{modal.status.pendiente}"></option>
+                    <option th:value="EN_PROCESO" th:text="#{modal.status.enProceso}"></option>
+                    <option th:value="COMPLETADA" th:text="#{modal.status.completada}"></option>
                 </select>
                 
                 <!-- Prioridad -->
-                <label for="priority">Prioridad:</label>
+                <label for="priority" th:text="#{modal.priority}"></label>
                 <select id="priority" name="priority" required>
-                    <option th:value="BAJA">Baja</option>
-                    <option th:value="MEDIA">Media</option>
-                    <option th:value="ALTA">Alta</option>
+                    <option th:value="BAJA" th:text="#{modal.priority.baja}"></option>
+                    <option th:value="MEDIA" th:text="#{modal.priority.media}"></option>
+                    <option th:value="ALTA" th:text="#{modal.priority.alta}"></option>
                 </select>
 
 				<!-- Fecha límite -->
-                <label for="dueDate">Fecha límite:</label>
+                <label for="dueDate" th:text="#{modal.dueDate}"></label>
                 <input type="date" id="dueDate" name="dueDate">
 
-                <button type="submit">Crear Tarea</button>
+                <button type="submit" th:text="#{modal.button.save}"></button>
             </form>
         </div>
     </div>

@@ -16,9 +16,9 @@
 	<div class="navbar">
 	    <!-- Izquierda: título + botón Tareas -->
 	    <div class="navbar-left" style="display: flex; align-items: center; gap: 10px;">
-	        <h1>TASK MANAGER</h1>
+	        <h1 th:text="#{navbar.title}"></h1>
 	        <form th:action="@{/board}" method="get">
-	            <button type="submit" class="navbar-button">📋 Tareas</button>
+	            <button type="submit" class="navbar-button" th:text="#{navbar.button.tasks}"></button>
 	        </form>
 	    </div>
 	
@@ -27,7 +27,7 @@
 	    <!-- Derecha: cerrar sesión -->
 	    <div class="navbar-right">
 	        <form th:action="@{/logout}" method="post" class="navbar-form">
-	            <button type="submit" class="navbar-button">Cerrar sesión</button>
+	            <button type="submit" class="navbar-button" th:text="#{navbar.button.logout}"></button>
 	        </form>
 	    </div>
 	</div>

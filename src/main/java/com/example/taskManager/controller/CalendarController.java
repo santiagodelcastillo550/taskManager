@@ -1,16 +1,16 @@
 package com.example.taskManager.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.taskManager.entities.Task;
-import com.example.taskManager.entities.User;
 import com.example.taskManager.repository.TaskRepository;
 import com.example.taskManager.repository.UserRepository;
 
@@ -18,7 +18,8 @@ import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class CalendarController {
-
+	Logger log = LoggerFactory.getLogger(CalendarController.class);
+	
 	private final TaskRepository taskRepository;
     private final UserRepository userRepository;
 
@@ -29,6 +30,8 @@ public class CalendarController {
 
     @GetMapping("/api/tasks")
     public List<Map<String, Object>> getUserTasks(HttpSession session) {
+    	log.info("Cargando las tareas");
+    	
         String username = (String) session.getAttribute("user");
 
         List<Map<String, Object>> events = new ArrayList<>();

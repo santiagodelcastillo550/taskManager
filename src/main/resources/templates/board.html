@@ -12,23 +12,21 @@
 	<div class="navbar">
 	    <!-- Izquierda: título + botón Calendario -->
 	    <div class="navbar-left" style="display: flex; align-items: center; gap: 10px;">
-	        <h1>TASK MANAGER</h1>
+	        <h1 th:text="#{navbar.title}"></h1>
 	        <form th:action="@{/board/calendar}" method="get">
-	            <button type="submit" class="navbar-button">📅 Calendario</button>
+	            <button type="submit" class="navbar-button" th:text="#{navbar.button.calendar}"></button>
 	        </form>
 	    </div>
 	
 	    <!-- Centro: botón Crear Tarea -->
 	    <div class="navbar-center">
-	        <button id="createTaskBtn" class="navbar-button">
-	            <span class="button-icon">+</span>Crear Tarea
-	        </button>
+	        <button id="createTaskBtn" class="navbar-button" th:text="#{navbar.button.create}"></button>
 	    </div>
 	
 	    <!-- Derecha: cerrar sesión -->
 	    <div class="navbar-right">
 	        <form th:action="@{/logout}" method="post" class="navbar-form">
-	            <button type="submit" class="navbar-button">Cerrar sesión</button>
+	            <button type="submit" class="navbar-button" th:text="#{navbar.button.logout}"></button>
 	        </form>
 	    </div>
 	</div>
@@ -37,7 +35,7 @@
     <div class="task-board">
         <!-- Columna PENDIENTE -->
         <div class="task-column pending">
-            <h2>Pendiente</h2>
+            <h2 th:text="#{task.pendiente}"></h2>
             <div th:each="task : ${pendientes}" class="task-card" 
 			     th:classappend="' priority-' + ${task.priority}"
 			     th:attr="data-id=${task.id},
@@ -48,15 +46,15 @@
 			              data-limitdate=${task.limitDate}">
 			    <h4 th:text="${task.title}"></h4>
 			    <p th:text="${task.description}"></p>
-			    <p class="task-priority"><strong>Prioridad:</strong> <span th:text="${task.priority}"></span></p>
-			    <p class="task-date">Fecha límite: <span th:text="${task.limitDate}"></span></p>
+			    <p class="task-priority"><strong th:text="#{task.prioridad}"></strong> <span th:text="${task.priority}"></span></p>
+			    <p class="task-date">Fecha límite:<span th:text="${task.limitDate}"></span></p>
 			</div>
 
         </div>
 
         <!-- Columna EN PROCESO -->
         <div class="task-column in-progress">
-            <h2>En Proceso</h2>
+            <h2 th:text="#{task.enProceso}"></h2>
             <div th:each="task : ${enProceso}" class="task-card" 
 			     th:classappend="' priority-' + ${task.priority}"
 			     th:attr="data-id=${task.id},
@@ -67,14 +65,14 @@
 			              data-limitdate=${task.limitDate}">
 			    <h4 th:text="${task.title}"></h4>
 			    <p th:text="${task.description}"></p>
-			    <p class="task-priority"><strong>Prioridad:</strong> <span th:text="${task.priority}"></span></p>
-			    <p class="task-date">Fecha límite: <span th:text="${task.limitDate}"></span></p>
+			    <p class="task-priority"><strong th:text="#{task.prioridad}"></strong> <span th:text="${task.priority}"></span></p>
+			    <p class="task-date">Fecha límite:<span th:text="${task.limitDate}"></span></p>
 			</div>
         </div>
 
         <!-- Columna COMPLETADA -->
         <div class="task-column completed">
-            <h2>Completada</h2>
+            <h2 th:text="#{task.completada}"></h2>
             <div th:each="task : ${completadas}" class="task-card" 
 			     th:classappend="' priority-' + ${task.priority}"
 			     th:attr="data-id=${task.id},
@@ -85,7 +83,7 @@
 			              data-limitdate=${task.limitDate}">
 			    <h4 th:text="${task.title}"></h4>
 			    <p th:text="${task.description}"></p>
-			    <p class="task-priority"><strong>Prioridad:</strong> <span th:text="${task.priority}"></span></p>
+			    <p class="task-priority"><strong th:text="#{task.prioridad}"></strong> <span th:text="${task.priority}"></span></p>
 			    <p class="task-date">Fecha límite: <span th:text="${task.limitDate}"></span></p>
 			</div>
         </div>

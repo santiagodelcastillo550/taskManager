@@ -8,7 +8,7 @@
 </head>
 <body class="login-body">
     <div class="login-container">
-        <h1>REGISTRO</h1>
+        <h1 th:text="#{register.title}"></h1>
         <form th:action="@{/register}" method="POST">
             <input type="text" name="username" placeholder="Usuario" required>
             <input type="text" name="name" placeholder="Nombre" required>
@@ -16,9 +16,9 @@
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
-            <button type="submit" class="register-btn">Registrarse</button>
+            <button type="submit" class="register-btn" th:text="#{register.button}"></button>
         </form>
-        <a th:href="@{/login}">Volver a Iniciar Sesión</a>
+        <a th:href="@{/login}" th:text="#{register.login}"></a>
     </div>
 </body>
 </html>
